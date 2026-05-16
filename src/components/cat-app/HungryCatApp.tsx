@@ -138,6 +138,10 @@ function PageTasks({
   onPick: () => void;
   onOther: () => void;
 }) {
+  const [collectionText, setCollectionText] = useState(
+    "最近你收藏了 4 个深夜美食、3 个家常菜、2 个省钱做饭技巧和 1 个猫猫视频。它看起来很想把生活过好，但目前最想把晚饭吃好。"
+  );
+
   const cards = [
     {
       emoji: "🥩",
@@ -207,6 +211,31 @@ function PageTasks({
             </div>
           </button>
         ))}
+      </div>
+
+      {/* 收藏夹输入 */}
+      <div
+        className="mt-6 rounded-3xl bg-gradient-card p-5 shadow-soft animate-pop-in"
+        style={{ animationDelay: "0.24s" }}
+      >
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-lg">📋</span>
+          <h3 className="text-sm font-bold text-primary">你的收藏夹里有什么？</h3>
+          <span className="ml-auto rounded-full bg-peach/30 px-2 py-0.5 text-[10px] text-primary/50">
+            {collectionText.length}/200
+          </span>
+        </div>
+        <textarea
+          value={collectionText}
+          onChange={(e) => setCollectionText(e.target.value)}
+          maxLength={200}
+          rows={3}
+          className="w-full rounded-2xl bg-cream/50 px-4 py-3 text-sm leading-relaxed text-primary placeholder:text-foreground/25 resize-none focus:outline-none focus:ring-2 focus:ring-accent/25 transition"
+          placeholder="比如：收藏了 5 个深夜美食、3 个家常菜…"
+        />
+        <p className="mt-2 text-xs text-foreground/35">
+          🐱 猫猫每天蹲守你的收藏夹，帮你把「想吃」变成「吃到」
+        </p>
       </div>
     </div>
   );
